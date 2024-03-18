@@ -35,6 +35,6 @@ and then the enemy Pokemon right after. This will go on until one of the Pokemon
         README and report: Fabrice Sikpa
 
 ## Citation
-ChatGPT - Randomly choose items specifically from a variable. Lines 57-60
-ChatGPT - Game logic. Lines 63 - 68
+ChatGPT - Randomly choose items specifically from a variable. Lines 57-60<br />
+ChatGPT - Game logic. Lines 63 - 68<br />
 
