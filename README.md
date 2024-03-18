@@ -5,4 +5,5 @@ and pick the element and then the computer will randomize its defense
 and attack.<P>
   
 </P>We decided to take the unique parts of the codes that we've already written and 
-put them all together to create a user-friendly Pokemon game 
+put them all together to create a user-friendly Pokemon game. Some of the parts we took
+were the randomizer for Jesus' code to randomize 
