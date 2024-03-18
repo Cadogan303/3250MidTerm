@@ -10,10 +10,10 @@ were the randomizer for Jesus' code to randomize the stats of the opponent's Pok
 the user's Pokemon when they pick "create a Pokemon". We also used Angelo's "create a Pokemon" code to help 
 with creating the Pokemon for the user.</P>
 
-</p>-What was done by who:
-     +   GUI: Angelo Monreal ans Jesus Lazo
-     +   Window: Garret Jordan and Jose Lopez
-     +   README and report: Fabrice Sikpa
+</p>What was done by who:<br />
+        GUI: Angelo Monreal ans Jesus Lazo<br />
+        Window: Garret Jordan and Jose Lopez<br />
+        README and report: Fabrice Sikpa
     </p>
 
 
