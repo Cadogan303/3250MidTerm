@@ -30,9 +30,9 @@ and then the enemy Pokemon right after. This will go on until one of the Pokemon
 
 
 ## What was done by who:<br />
-        GUI: Angelo Monreal @ ans Jesus Lazo<br />
-        Window: Garret Jordan and Jose Lopez<br />
-        README and report: Fabrice Sikpa
+GUI: Angelo Monreal  ans Jesus Lazo<br />
+Window: Garret Jordan and Jose Lopez<br />
+README and report: Fabrice Sikpa
 
 ## Citation
 ChatGPT - Randomly choose items specifically from a variable. Lines 57-60<br />
