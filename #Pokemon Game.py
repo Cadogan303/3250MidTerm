@@ -1,5 +1,7 @@
 #Pokemon Game
 import tkinter as tk
+import random
+from tkinter import messagebox
 
 pokemon_stats = {
     "Charmander": {"health": 100, "power": 80},
@@ -7,12 +9,70 @@ pokemon_stats = {
     "Squirtle": {"health": 100, "power": 70},
     "Pikachu": {"health": 100, "power": 90}
 }
-
-def display_stats(pokemon):
-    if pokemon in pokemon_stats:
-        health = pokemon_stats[pokemon]["health"]
-        power = pokemon_stats[pokemon]["power"]
+pokemon_enemy_stats = {
+    "Lulcario": {"health": 150, "power": 80},
+    "Snorlax": {"health": 300, "power": 30},
+    "Weedle": {"health": 75, "power": 45},
+    "MewTwo": {"health": 90, "power": 80}
+}
+#modified this function to conjoin the enemy and pokemon dictionaries.
+#checks whether enemy or player to determine which dictionary to use.
+def display_stats(pokemon, is_enemy=False):
+    if is_enemy:
+        pokemon_stats_dict = pokemon_enemy_stats
+    else:
+        pokemon_stats_dict = pokemon_stats
+    if pokemon in pokemon_stats_dict:
+        health = pokemon_stats_dict[pokemon]["health"]
+        power = pokemon_stats_dict[pokemon]["power"]
         result_label.config(text=f"{pokemon}: Health: {health}, Power: {power}")
+
+#in this attack funciton, first determines whether or not enemy/player, 
+#then using random damage value to subtract from pokemons health variable.
+def attack(pokemon, is_enemy=False):
+    if is_enemy:
+        pokemon_stats_dict = pokemon_enemy_stats
+    else:
+        pokemon_stats_dict = pokemon_stats
+        
+    if pokemon in pokemon_stats_dict:
+        damage = random.randint(10, 50)
+        pokemon_stats_dict[pokemon]["health"] -= damage
+        #implemented messagebox for visual component of the game.
+        messagebox.showinfo("Attack", f"{pokemon} dealt {damage} damage!")
+        display_stats(pokemon, is_enemy)
+#similar concept to attack funciton.enemy/player, then add health instead of subtract
+def defend(pokemon, is_enemy=False):
+    if is_enemy:
+        pokemon_stats_dict = pokemon_enemy_stats
+    else:
+        pokemon_stats_dict = pokemon_stats
+        
+    if pokemon in pokemon_stats_dict:
+        boost = random.randint(5, 30)
+        pokemon_stats_dict[pokemon]["health"] += boost
+        messagebox.showinfo("Defend", f"{pokemon} increased health by {boost}!")
+        display_stats(pokemon, is_enemy)
+
+def battle(pokemon):
+    # pulled this from chatGPT, wasnt sure how to randomly choose items specfically from a variable.
+    enemy_pokemon = random.choice(list(pokemon_enemy_stats.keys()))
+    messagebox.showinfo("Battle", f"Enemy {enemy_pokemon} appears!")
+
+    #Game logic also pulled from ChatGPT in specific lines 63 - 68
+    while pokemon_stats[pokemon]["health"] > 0 and pokemon_enemy_stats[enemy_pokemon]["health"] > 0:
+        action = messagebox.askquestion("Action", "Do you want to Attack?")
+        if action == 'yes':
+            attack(pokemon)
+        else:
+            defend(pokemon)
+
+        if pokemon_enemy_stats[enemy_pokemon]["health"] > 0:
+            enemy_action = random.choice(["attack", "defend"])
+            if enemy_action == "attack":
+                attack(enemy_pokemon, is_enemy=True)
+            else:
+                defend(enemy_pokemon, is_enemy=True)
 
 def create_custom_pokemon():
     custom_window = tk.Toplevel(root)
@@ -59,7 +119,7 @@ def create_button(root, pokemon):
     if pokemon == "Create your own Pokemon":
         button = tk.Button(root, text=pokemon, command=create_custom_pokemon)
     else:
-        button = tk.Button(root, text=pokemon, command=lambda p=pokemon: display_stats(p))
+        button = tk.Button(root, text=pokemon, command=lambda p=pokemon: battle(p))
     button.pack()
 
 # Only the "Create your own Pokemon" button has functionality
